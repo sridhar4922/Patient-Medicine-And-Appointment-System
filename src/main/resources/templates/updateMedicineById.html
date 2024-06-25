@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Medicine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: rgb(223, 201, 236);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-family: "Bevan", serif;
+            font-weight: 600;
+            font-size: 40px;
+            height: 100%;
+            width: 100%;
+            margin-top: 50px;
+            padding: 0
+        }
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            display: block;
+            margin-left: 28%;
+            margin-right: auto;
+            padding:40px;
+            background-color: #ffffff92;
+            backface-visibility: visible;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8%;
+        }
+        div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        button {
+            display:block;
+            width: 30%;
+            padding: 12px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            margin-left: 34%;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none; /* Remove default link styling */
+            text-align: center;
+        }
+        button:hover {
+            background-color: #1c5986;
+            transform: scale(1.05);
+        }
+        .back-to-home {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #2980b9;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            margin-left: 44.5%;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+        }
+
+        .back-to-home:hover {
+            background-color: #1c5986;
+        }
+        .back-to-home:active {
+            background-color: #0056b3;
+            box-shadow: 0 2px #666;
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+<h1>Update Medicine</h1>
+<form th:action="@{/saveUpdate}" th:object="${medicine}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+    <input type="hidden" th:field="*{patientUser.id}" />
+    <input type="hidden" th:field="*{Dosage}" />
+
+
+    <label for="serialNO">Serial No</label>
+    <input type="text" id="serialNO" name="serialNo" th:value="${medicine.serialNo}" readonly />
+
+
+    <label for="medicineId">Medicine Id</label>
+    <input type="text" id="medicineId" name="medicineId" th:value="${medicine.medicineId}" readonly />
+
+    <div>
+        <label for="medicineName">Medicine Name</label>
+        <input type="text"  id="medicineName" name="medicineName" th:value="${medicine.medicineName}" readonly />
+    </div>
+    <div>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" th:value="${medicine.quantity}" required />
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+</form>
+<a href="/home" class="back-to-home">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Medicines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&display=swap" rel="stylesheet">
+   
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: rgb(223, 201, 236);
+            background-size: cover;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-repeat: no-repeat;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-family: "Bevan", serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+        table {
+            margin: 20px 0;
+            border-collapse: collapse;
+            background-color: #ffffff35;
+            backface-visibility:visible;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            color: #333;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 12px 15px;
+        }
+        th {
+            color: #fff;
+            background-color: #2980b9;
+        }
+        tr:nth-child(even) {
+            color: #000000;
+            background-color: #f2f2f2;
+        }
+        .edit-button {
+            display:inline;
+            padding: 8px 16px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            margin: 4px 2px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none; /* Remove default link styling */
+            text-align: center;
+        }
+        .edit-button:hover {
+            background-color: #1c5986;
+            transform: scale(1.05);
+        }
+        .edit-button:active {
+            background-color: #1c5986;
+            box-shadow: 0 2px #666;
+            transform: translateY(2px);
+        }
+        .back-to-home {
+            
+            display: inline-block;
+            padding: 12px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px #999;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .back-to-home:hover {
+            background-color: #1c5986;
+            transform: scale(1.05);
+        }
+        .back-to-home:active {
+            background-color: #1c5986;
+            box-shadow: 0 2px #666;
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+<h1>Medicine List</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Serial No</th>
+        <th>Medicine Name</th>
+        <th>Dosage</th>
+        <th>Quantity</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="medicine : ${medicine}">
+        <td th:text="${medicine.serialNo}"></td>
+        <td th:text="${medicine.medicineName}"></td>
+        <td th:text="${medicine.dosage}"></td>
+        <td th:text="${medicine.quantity}"></td>
+        <td>
+            <a th:href="@{/medicineUpdateById(serialNo=${medicine.serialNo})}" class="edit-button">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>   
+<a href="/home" class="back-to-home">Back to Home</a>
+</body>
+</html>

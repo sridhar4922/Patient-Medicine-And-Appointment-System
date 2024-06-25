@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Medicine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: rgb(223, 201, 236);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-family: "Bevan", serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+        p {
+            text-align: center;
+            color: #000000;
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            display: block;
+            margin-left: 28%;
+            margin-right: auto;
+            padding:20px;
+            background-color: #ffffff92;
+            backface-visibility: visible;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+        div {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        button {
+            display:block;
+            width: 30%;
+            padding: 12px;
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            margin-left: 34%;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none; /* Remove default link styling */
+            text-align: center; /* Center the text */
+        }
+        button:hover {
+            background-color: #1c5986;
+            transform: scale(1.05);
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #2980b9;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            margin-left: 43.2%;
+            margin-top: -10%;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center; /* Center the text */
+        }
+        .back-to-home:hover {
+            background-color: #1c5986;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Medicine</h1>
+<p>For convenience, register medicines prescribed by our authorized doctors only. You can update the quantity, but all other options are restricted for safety.</b></p>
+<form th:action="@{/save}" method="post" th:object="${medicine}" >
+    <input type="hidden" th:value="${patientUser.id}" name="patientUserId"/>
+    <div>
+        <label for="medicineId">Medicine ID</label>
+        <input type="text" id="medicineId" name="medicineId" required placeholder="Enter Medicine ID" />
+    </div>
+    <div>
+        <label for="medicineName">Medicine Name</label>
+        <input type="text" id="medicineName" name="medicineName" required placeholder="Enter Medicine Name" />
+    </div>
+    <div>
+        <label for="Dosage">Dosage</label>
+        <input type="text" id="Dosage" name="Dosage" required placeholder="Enter Dosage" />
+    </div>
+    <div>
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" required placeholder="Enter Quantity" />
+    </div>
+    <div>
+        <button type="submit">Add Medicine</button>
+    </div>
+</form>
+<a href="/home" class="back-to-home">Back to Home</a>
+</body>
+</html>
